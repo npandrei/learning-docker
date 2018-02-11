@@ -124,7 +124,11 @@ This will output a line similar to this. You can use it to configure other nodes
 
 `docker-machine ssh myvm2 "docker swarm join --token {token} {ip}:2377"`
 
-You can make the worked leave the swarm
+You can show this token using
+
+`docker-machine ssh myvm1 "docker swarm join-token worker"`
+
+You can make the worker leave the swarm
 
 `docker-machine ssh myvm2 "docker swarm leave"`
 
@@ -136,14 +140,6 @@ Instead of using `docker-machine ssh ...`, you ca configure the shell to use a c
 
 `docker-machine env {machine}`
 
-You can start/stop the VMs using
-
-`docker-machine stop $(docker-machine ls -q)`
-
-And you can remove all VMs using
-
-`docker-machine rm $(docker-machine ls -q)`
-
 And this will output the following line, which needs to be executed to complete the process
 
 `eval $(docker-machine env myvm1)`
@@ -151,6 +147,14 @@ And this will output the following line, which needs to be executed to complete 
 You can unset this env variables using
 
 `eval $(docker-machine env -u)`
+
+You can start/stop the VMs using
+
+`docker-machine stop $(docker-machine ls -q)`
+
+And you can remove all VMs using
+
+`docker-machine rm $(docker-machine ls -q)`
 
 You can now deploy the app (must be in the directory where docker-compose.yml file is located)
 
